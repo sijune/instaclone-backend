@@ -10,11 +10,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Post {
+model User {
   id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  author    String? //Required가 아님
+  firstName String
+  lastName  String? //lastName은 필수값이 아니다.
+  username  String   @unique
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
