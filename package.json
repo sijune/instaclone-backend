@@ -1,5 +1,5 @@
 {
-    "name": "instaclone",
+    "name": "junstagram",
     "version": "1.0.0",
     "description": "",
     "scripts": {
@@ -9,19 +9,20 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sijune/instaclone-backend.git"
+        "url": "git+https://github.com/sijune/junstagram-backend.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/sijune/instaclone-backend/issues"
+        "url": "https://github.com/sijune/junstagram-backend/issues"
     },
-    "homepage": "https://github.com/sijune/instaclone-backend#readme",
+    "homepage": "https://github.com/sijune/junstagram-backend#readme",
     "dependencies": {
         "@prisma/client": "^2.27.0",
         "apollo-server": "^2.25.2",
         "apollo-server-express": "^2.25.2",
+        "aws-sdk": "^2.948.0",
         "bcrypt": "^5.0.1",
         "dotenv": "^10.0.0",
         "express": "^4.17.1",

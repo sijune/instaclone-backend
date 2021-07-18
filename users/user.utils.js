@@ -22,10 +22,17 @@ export const getUser = async(token) => {
 // 함수가 다른 함수를 리턴한다.
 export const protectResolver = (ourResolver) => (root, args, context, info) => {
     if (!context.loggedInUser) {
-        return {
-            ok: false,
-            error: "Please log in to perform this action.",
-        };
+        const query = info.operation.operation === "query";
+        if (query) {
+            //요청이 Query인 경우
+            return null;
+        } else {
+            //요청이 Mutation인 경우
+            return {
+                ok: false,
+                error: "Please log in to perform this action.",
+            };
+        }
     }
     return ourResolver(root, args, context, info);
 };
