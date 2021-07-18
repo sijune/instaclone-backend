@@ -1,3 +1,3 @@
-# Instaclone
+# Junstagram
 
-Instagram Clone Backend
+Instagram Clone Backend with GraphQl and Prisma
