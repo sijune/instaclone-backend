@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "dev": "nodemon --exec babel-node server",
+        "dev": "nodemon --exec babel-node server --delay 2",
         "migrate": "npx prisma migrate dev",
         "studio": "npx prisma studio"
     },
@@ -19,13 +19,16 @@
     },
     "homepage": "https://github.com/sijune/instaclone-backend#readme",
     "dependencies": {
-        "@prisma/client": "^2.26.0",
+        "@prisma/client": "^2.27.0",
         "apollo-server": "^2.25.2",
+        "apollo-server-express": "^2.25.2",
         "bcrypt": "^5.0.1",
         "dotenv": "^10.0.0",
+        "express": "^4.17.1",
         "graphql": "^15.5.1",
         "graphql-tools": "^7.0.5",
-        "jsonwebtoken": "^8.5.1"
+        "jsonwebtoken": "^8.5.1",
+        "morgan": "^1.10.0"
     },
     "devDependencies": {
         "@babel/core": "^7.14.6",
