@@ -1,19 +1,23 @@
 import client from "../../client";
+import { uploadToS3 } from "../../shared/shared.utils";
 import { protectResolver } from "../../users/user.utils";
+import { processHashtags } from "../photos.utils";
 
 export default {
     Mutation: {
         uploadPhoto: protectResolver(
             async(_, { file, caption }, { loggedInUser }) => {
                 let hashtagObjs = [];
+
                 if (caption) {
                     //1. parsing
                     hashtagObjs = processHashtags(caption);
                 }
+                const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
                 //2. hasgtag 생성 또는 조회
                 return client.photo.create({
                     data: {
-                        file,
+                        file: fileUrl,
                         caption,
                         user: {
                             connect: {

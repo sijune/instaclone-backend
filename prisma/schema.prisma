@@ -24,10 +24,10 @@ model User {
   comments  Comment[]
   followers User[]    @relation("FollowRelation", references: [id]) //self relation을 만든다.
   following User[]    @relation("FollowRelation", references: [id])
+  rooms     Room[]
+  Message   Message[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-
-
 
 }
 
@@ -75,4 +75,24 @@ model Comment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+}
+
+model Room {
+  id        Int       @id @default(autoincrement())
+  users     User[] // ManyToMany
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  payload   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  room      Room     @relation(fields: [roomId], references: [id])
+  roomId    Int
+  read      Boolean  @default(false) //default는 false로 설정
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
