@@ -42,6 +42,8 @@ const apollo = new ApolloServer({
     },
 });
 
+const PORT = process.env.PORT;
+
 const app = express(); //apollo server에 숨어져 있던 서버를 밖으로 노출시킨다.
 app.use(logger("tiny"));
 app.use("/static", express.static("uploads"));
@@ -50,8 +52,6 @@ apollo.applyMiddleware({ app });
 
 const httpServer = http.createServer(app); //app상에서 listen하는 것이 아닌, http server 상에서 listen하도록 한다.
 apollo.installSubscriptionHandlers(httpServer);
-
-const PORT = process.env.PORT;
 
 httpServer.listen(PORT, () => {
     console.log(`Server is running on LocalHost:${PORT}`);
