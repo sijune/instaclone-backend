@@ -19,7 +19,7 @@ model User {
   password  String
   bio       String?
   avatar    String?
-  Photo     Photo[]
+  photos    Photo[]
   likes     Like[]
   comments  Comment[]
   followers User[]    @relation("FollowRelation", references: [id]) //self relation을 만든다.

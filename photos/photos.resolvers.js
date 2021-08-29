@@ -19,10 +19,17 @@ export default {
                     photoId: id,
                 },
             }),
-        comments: ({ id }) =>
+        commentNumber: ({ id }) =>
             client.comment.count({
                 where: {
                     photoId: id,
+                },
+            }),
+        comments: ({ id }) =>
+            client.comment.findMany({
+                where: { photoId: id },
+                include: {
+                    user: true,
                 },
             }),
         isMine: ({ userId }, _, { loggedInUser }) => {
@@ -30,6 +37,27 @@ export default {
                 return false;
             }
             return userId === loggedInUser.id;
+        },
+        isLiked: async({ id }, _, { loggedInUser }) => {
+            if (!loggedInUser) {
+                return false;
+            }
+            const ok = await client.like.findUnique({
+                where: {
+                    photoId_userId: {
+                        photoId: id,
+                        userId: loggedInUser.id,
+                    },
+                },
+                select: {
+                    id: true,
+                },
+            });
+            if (ok) {
+                //로그인한 유저가 좋아요를 누른 글이라면?
+                return true;
+            }
+            return false;
         },
     },
     Hashtag: {

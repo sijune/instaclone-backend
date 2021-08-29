@@ -80,6 +80,7 @@ export default {
                 // 반드시 roomUpdates의 반환값과 동일하게 두번째 인자 값으로 들어가야 한다.
                 return {
                     ok: true,
+                    id: message.id,
                 };
             }
         ),

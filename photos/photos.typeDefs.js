@@ -7,9 +7,11 @@ export default gql `
     file: String!
     caption: String
     likes: Int! # 좋아요 갯수 - resolver로 해결
-    comments: Int! # 댓글 갯수 - resolver로 해결
+    commentNumber: Int! # 댓글 갯수 - resolver로 해결
+    comments: [Comment]
     hashtags: [Hashtag]
     isMine: Boolean!
+    isLiked: Boolean!
     createdAt: String!
     updatedAt: String!
   }

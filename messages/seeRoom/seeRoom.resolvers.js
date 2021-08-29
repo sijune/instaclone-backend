@@ -3,8 +3,9 @@ import { protectResolver } from "../../users/user.utils";
 
 export default {
     Query: {
-        seeRoom: protectResolver((_, { id }, { loggedInUser }) =>
-            client.room.findFirst({
+        seeRoom: protectResolver((_, { id }, { loggedInUser }) => {
+            console.log(id);
+            return client.room.findFirst({
                 where: {
                     id,
                     users: {
@@ -13,7 +14,7 @@ export default {
                         },
                     },
                 },
-            })
-        ),
+            });
+        }),
     },
 };
