@@ -3,9 +3,11 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "dev": "nodemon --exec babel-node server --delay 2",
+        "dev": "nodemon --exec babel-node src/server --delay 2",
         "migrate": "npx prisma migrate dev",
-        "studio": "npx prisma studio"
+        "studio": "npx prisma studio",
+        "build": "babel src --out-dir build",
+        "start": "node build/server"
     },
     "repository": {
         "type": "git",
@@ -19,6 +21,8 @@
     },
     "homepage": "https://github.com/sijune/junstagram-backend#readme",
     "dependencies": {
+        "@babel/cli": "^7.14.8",
+        "@babel/plugin-transform-runtime": "^7.15.0",
         "@prisma/client": "^2.27.0",
         "apollo-server": "^2.25.2",
         "apollo-server-express": "^2.25.2",
