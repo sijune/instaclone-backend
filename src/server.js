@@ -9,7 +9,8 @@ import { getUser, protectResolver } from "./users/user.utils";
 const apollo = new ApolloServer({
     resolvers, //graphql-tools 가 아닌 apollo server 가 스키마를 생성하도록 함, Upload scalar를 사용하기 위해서
     typeDefs,
-    playground: true,
+    playground: true, //production 모드에서 playground 사용
+    introspection: true, //production 모드에서 playground 사용
     context: async(ctx) => {
         if (ctx.req) {
             //http
