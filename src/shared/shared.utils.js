@@ -15,6 +15,9 @@ export const uploadToS3 = async(file, userId, folderName) => {
     const newFilename = `${folderName}/${userId}-${Date.now()}-${filename}`;
     const readStream = createReadStream();
 
+    console.log("AWS_KEY", process.env.AWS_KEY);
+    console.log("AWS_SECRET", process.env.AWS_SECRET);
+
     const { Location } = await new AWS.S3()
         .upload({
             Bucket: "junstagram-uploads",
