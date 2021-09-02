@@ -10,7 +10,7 @@ AWS.config.update({
 export const uploadToS3 = async(file, userId, folderName) => {
     console.log("1111111", file);
     console.log("2222222", userId);
-    console.log("3333333", usfolderNameerId);
+    console.log("3333333", folderName);
     const { filename, createReadStream } = await file;
     const newFilename = `${folderName}/${userId}-${Date.now()}-${filename}`;
     const readStream = createReadStream();
