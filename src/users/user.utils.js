@@ -34,5 +34,6 @@ export const protectResolver = (ourResolver) => (root, args, context, info) => {
             };
         }
     }
+
     return ourResolver(root, args, context, info);
 };
