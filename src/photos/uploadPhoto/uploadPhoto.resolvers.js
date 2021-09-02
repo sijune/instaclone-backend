@@ -8,7 +8,6 @@ export default {
         uploadPhoto: protectResolver(
             async(_, { file, caption }, { loggedInUser }) => {
                 let hashtagObjs = [];
-                console.log(caption);
 
                 if (caption) {
                     //1. parsing
@@ -18,7 +17,8 @@ export default {
                 const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
                 console.log(fileUrl);
                 //3. 사진 저장 with hashtag
-                return client.photo.create({
+
+                const photo = client.photo.create({
                     data: {
                         file: fileUrl,
                         caption,
@@ -36,6 +36,8 @@ export default {
                         }),
                     },
                 });
+                console.log(photo);
+                return photo;
 
                 //4. hashtag저장 with photo
             }

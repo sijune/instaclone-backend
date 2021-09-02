@@ -17,7 +17,6 @@ const apollo = new ApolloServer({
             return {
                 //http headers에 넣는 방법
                 loggedInUser: await getUser(ctx.req.headers.token),
-                protectResolver,
             };
         } else {
             //ws
